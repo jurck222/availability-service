@@ -67,14 +67,6 @@ public class AvailabilityService {
         return false;
     }
 
-    public Availability getAvailabilityByTimeWindow(LocalDateTime startTime, LocalDateTime endTime) {
-        Optional<Availability> availability = availabilityRepository.findByStartTimeAndEndTime(startTime, endTime);
-        if (availability.isEmpty()) {
-            throw new RuntimeException("No availability found for start time " + startTime + " and end time " + endTime);
-        }
-        return availability.get();
-    }
-
     @Transactional
     public boolean resetBooked(int availabilityId) {
         Availability availability = getAvailabilityById(availabilityId);
